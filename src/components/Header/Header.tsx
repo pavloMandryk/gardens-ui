@@ -16,6 +16,7 @@ import GlobalPreferencesButton from '../Garden/Preferences/GlobalPreferencesButt
 import Layout from '../Layout'
 import { useConnectedGarden } from '@providers/ConnectedGarden'
 import { useWallet } from '@providers/Wallet'
+import { useAppTheme } from '../../providers/AppTheme'
 
 import { buildGardenPath } from '@utils/routing-utils'
 import { CELESTE_URL, getDexTradeTokenUrl } from '@/endpoints'
@@ -23,6 +24,8 @@ import { CELESTE_URL, getDexTradeTokenUrl } from '@/endpoints'
 import defaultGardenLogo from '@assets/defaultGardenLogo.png'
 import gardensLogo from '@assets/gardensLogoMark.svg'
 import gardensLogoType from '@assets/gardensLogoType.svg'
+import darkModeIconLight from '@assets/icon-dark-mode-light.svg'
+import darkModeIconDark from '@assets/icon-dark-mode-dark.svg'
 
 function Header({
   onOpenPreferences,
@@ -37,6 +40,7 @@ function Header({
   const history = useHistory()
   const { below } = useViewport()
   const { account } = useWallet()
+  const AppTheme = useAppTheme()
 
   const mobileMode = below('medium')
 
@@ -55,6 +59,10 @@ function Header({
   const logoLink = `#${
     connectedGarden ? buildGardenPath(history.location, '') : '/home'
   }`
+
+  const toggleDarkMode = useCallback(() => {
+    AppTheme.toggleAppearance()
+  }, [AppTheme])
 
   const showBalance = connectedGarden && account && !mobileMode
   const showMenu = pathname !== '/home' && mobileMode
@@ -171,6 +179,22 @@ function Header({
               `}
             >
               <AccountModule compact={mobileMode} />
+              <ButtonBase
+                css={`
+                  width: ${3.5 * GU}px;
+                  height: ${3.5 * GU}px;
+                `}
+                onClick={toggleDarkMode}
+              >
+                <img
+                  css="width: 100%;"
+                  src={
+                    AppTheme.appearance === 'light'
+                      ? darkModeIconLight
+                      : darkModeIconDark
+                  }
+                />
+              </ButtonBase>
               {showBalance && (
                 <>
                   <div
