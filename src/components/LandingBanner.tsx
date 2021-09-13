@@ -1,8 +1,14 @@
 import React from 'react'
 import { Button, useLayout, useTheme } from '@1hive/1hive-ui'
+
+import { useAppTheme } from '@providers/AppTheme'
+
 import desktopBanner from '@assets/landingBanner.png'
+import desktopBannerDark from '@assets/dark-mode/landingBanner.png'
 import mobileBanner from '@assets/landingBanner-mobile.png'
+import mobileBannerDark from '@assets/dark-mode/landingBanner-mobile.png'
 import tabletBanner from '@assets/landingBanner-tablet.png'
+import tabletBannerDark from '@assets/dark-mode/landingBanner-tablet.png'
 import styled from 'styled-components'
 
 const BANNERS = {
@@ -10,22 +16,26 @@ const BANNERS = {
     aspectRatio: '53.5%',
     hFontSize: '32px',
     image: mobileBanner,
+    imageDark: mobileBannerDark,
     pFontSize: '14px',
   },
   medium: {
     image: tabletBanner,
+    imageDark: tabletBannerDark,
     aspectRatio: '36.5%',
     hFontSize: '52px',
     pFontSize: '18px',
   },
   large: {
     image: desktopBanner,
+    imageDark: desktopBannerDark,
     aspectRatio: '26.5%',
     hFontSize: '52px',
     pFontSize: '18px',
   },
   max: {
     image: desktopBanner,
+    imageDark: desktopBannerDark,
     aspectRatio: '26.5%',
     hFontSize: '64px',
     pFontSize: '20px',
@@ -34,9 +44,11 @@ const BANNERS = {
 
 const Wrapper = styled.div<{
   image: string
+  imageDark: string
+  appearance: 'dark' | 'light'
   aspectRatio: any
 }>`
-  background: url(${props => props.image}) no-repeat;
+  background: url(${props => props.appearance === 'light' ? props.image : props.imageDark}) no-repeat;
   background-size: contain;
   position: absolute;
   top: 0;
@@ -84,11 +96,13 @@ type PropsType = {
 const LandingBanner = React.forwardRef<any, PropsType>((props, ref) => {
   const { onCreateGarden } = props
   const theme = useTheme()
+
+  const { AppTheme } = useAppTheme()
   const { layoutName } = useLayout()
-  const { aspectRatio, hFontSize, image, pFontSize } = BANNERS[layoutName]
+  const { aspectRatio, hFontSize, image, imageDark, pFontSize } = BANNERS[layoutName]
 
   return (
-    <Wrapper ref={ref} image={image} aspectRatio={aspectRatio}>
+    <Wrapper ref={ref} image={image} imageDark={imageDark} aspectRatio={aspectRatio} appearance={AppTheme.appearance}>
       <Container>
         <ContainerChild>
           <div

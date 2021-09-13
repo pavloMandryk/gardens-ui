@@ -11,12 +11,15 @@ import {
 
 import Carousel from '@components/Carousel/Carousel'
 import { useGardenState } from '@providers/GardenState'
+import { useAppTheme } from '@providers/AppTheme'
 import useUnipoolRewards from '@/hooks/useUnipoolRewards'
 
 import { formatTokenAmount } from '@utils/token-utils'
 
 import wrappedIcon from '@assets/wrappedIcon.svg'
+import wrappedIconDark from '@assets/dark-mode/wrappedIconDark.svg'
 import unwrappedIcon from '@assets/unwrappedIcon.svg'
+import unwrappedIconDark from '@assets/dark-mode/unwrappedIconDark.svg'
 import claimRewardsIcon from '@assets/rewardsWrapperIcon.svg'
 
 const modeAttributes = {
@@ -34,6 +37,7 @@ const modeAttributes = {
 }
 
 function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
+  const AppTheme = useAppTheme()
   const { token, wrappableToken } = useGardenState()
 
   const loading =
@@ -84,6 +88,7 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
   )
 
   return (
+<<<<<<< HEAD
     <Box>
       <div>
         <Carousel
@@ -92,16 +97,64 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
           itemSpacing={4 * GU}
           items={carouselItems}
           onItemSelected={handleItemSelected}
+=======
+    <Box
+      css={`
+        ${!compactMode && `margin-bottom: ${3 * GU}px;`}
+      `}
+    >
+      <div
+        css={`
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        `}
+      >
+        <Token
+          balance={wrappableToken.accountBalance}
+          loading={loading}
+          mode="wrap"
+          onClick={onWrapToken}
+          token={wrappableToken.data}
+          darkTheme={AppTheme.appearance === 'dark'}
+        />
+        <LineSeparator border={theme.border} />
+        <Token
+          balance={token.accountBalance}
+          loading={loading}
+          mode="unwrap"
+          onClick={onUnwrapToken}
+          token={token.data}
+          darkTheme={AppTheme.appearance === 'dark'}
+>>>>>>> 312902a3 (Dark Mode: Implement new assets)
         />
       </div>
     </Box>
   )
 }
 
+<<<<<<< HEAD
 function Token({ balance, loading, mode, onClick, token }) {
   const theme = useTheme()
   const { button, icon, hint } = modeAttributes[mode]
   const claimMode = mode === 'claim'
+=======
+function Token({ balance, loading, mode, darkTheme, onClick, token }) {
+  const wrapMode = mode === 'wrap'
+
+  const icon = wrapMode
+    ? darkTheme
+      ? wrappedIconDark
+      : wrappedIcon
+    : darkTheme
+    ? unwrappedIconDark
+    : unwrappedIcon
+
+  console.log(icon)
+  const button = wrapMode
+    ? { mode: 'strong', label: 'Wrap' }
+    : { mode: 'normal', label: 'Unwrap' }
+>>>>>>> 312902a3 (Dark Mode: Implement new assets)
 
   return (
     <div
