@@ -23,16 +23,14 @@ import unwrappedIconDark from '@assets/dark-mode/unwrappedIconDark.svg'
 import claimRewardsIcon from '@assets/rewardsWrapperIcon.svg'
 
 const modeAttributes = {
-  wrap: { icon: unwrappedIcon, button: { mode: 'strong', label: 'Wrap' } },
+  wrap: { button: { mode: 'strong', label: 'Wrap' } },
   unwrap: {
-    icon: wrappedIcon,
     button: { mode: 'strong', label: 'Unwrap' },
     hint:
       'This amount can be used to vote on proposals. It can be unwrapped at any time.',
   },
   claim: {
     button: { mode: 'normal', label: 'Claim' },
-    icon: claimRewardsIcon,
   },
 }
 
@@ -61,6 +59,7 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
       mode="wrap"
       onClick={onWrapToken}
       token={wrappableToken.data}
+      darkTheme={AppTheme.appearance === 'dark'}
     />,
     <Token
       balance={token.accountBalance}
@@ -68,6 +67,7 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
       mode="unwrap"
       onClick={onUnwrapToken}
       token={token.data}
+      darkTheme={AppTheme.appearance === 'dark'}
     />,
     <Token
       balance={earnedRewards}
@@ -75,6 +75,7 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
       mode="claim"
       onClick={handleClaimRewards}
       token={wrappableToken.data}
+      darkTheme={AppTheme.appearance === 'dark'}
     />,
   ]
 
@@ -88,7 +89,6 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
   )
 
   return (
-<<<<<<< HEAD
     <Box>
       <div>
         <Carousel
@@ -97,49 +97,16 @@ function WrapToken({ onClaimRewards, onUnwrapToken, onWrapToken }) {
           itemSpacing={4 * GU}
           items={carouselItems}
           onItemSelected={handleItemSelected}
-=======
-    <Box
-      css={`
-        ${!compactMode && `margin-bottom: ${3 * GU}px;`}
-      `}
-    >
-      <div
-        css={`
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-        `}
-      >
-        <Token
-          balance={wrappableToken.accountBalance}
-          loading={loading}
-          mode="wrap"
-          onClick={onWrapToken}
-          token={wrappableToken.data}
-          darkTheme={AppTheme.appearance === 'dark'}
-        />
-        <LineSeparator border={theme.border} />
-        <Token
-          balance={token.accountBalance}
-          loading={loading}
-          mode="unwrap"
-          onClick={onUnwrapToken}
-          token={token.data}
-          darkTheme={AppTheme.appearance === 'dark'}
->>>>>>> 312902a3 (Dark Mode: Implement new assets)
         />
       </div>
     </Box>
   )
 }
 
-<<<<<<< HEAD
-function Token({ balance, loading, mode, onClick, token }) {
-  const theme = useTheme()
-  const { button, icon, hint } = modeAttributes[mode]
-  const claimMode = mode === 'claim'
-=======
 function Token({ balance, loading, mode, darkTheme, onClick, token }) {
+  const theme = useTheme()
+  const { button, hint } = modeAttributes[mode]
+  const claimMode = mode === 'claim'
   const wrapMode = mode === 'wrap'
 
   const icon = wrapMode
@@ -149,12 +116,6 @@ function Token({ balance, loading, mode, darkTheme, onClick, token }) {
     : darkTheme
     ? unwrappedIconDark
     : unwrappedIcon
-
-  console.log(icon)
-  const button = wrapMode
-    ? { mode: 'strong', label: 'Wrap' }
-    : { mode: 'normal', label: 'Unwrap' }
->>>>>>> 312902a3 (Dark Mode: Implement new assets)
 
   return (
     <div

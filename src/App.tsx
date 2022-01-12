@@ -14,9 +14,11 @@ import theme from './theme'
 
 function App() {
   const { appearance } = useAppTheme()
+  const mode = theme[appearance as keyof typeof theme]
+  console.log(mode)
   return (
     <HashRouter>
-      <Main assetsUrl="/aragon-ui/" layout={false} scrollView={false} theme={theme[appearance]}>
+      <Main assetsUrl="/aragon-ui/" layout={false} scrollView={false} theme={mode}>
         <WalletProvider>
           <GlobalErrorHandler>
             <ProfileProvider>

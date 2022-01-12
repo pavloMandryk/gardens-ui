@@ -97,7 +97,7 @@ const LandingBanner = React.forwardRef<any, PropsType>((props, ref) => {
   const { onCreateGarden } = props
   const theme = useTheme()
 
-  const { AppTheme } = useAppTheme()
+  const AppTheme = useAppTheme()
   const { layoutName } = useLayout()
   const { aspectRatio, hFontSize, image, imageDark, pFontSize } = BANNERS[layoutName]
 
@@ -143,6 +143,5 @@ const LandingBanner = React.forwardRef<any, PropsType>((props, ref) => {
   )
 })
 
-LandingBanner.displayName = 'LandingBanner'
 
 export default LandingBanner

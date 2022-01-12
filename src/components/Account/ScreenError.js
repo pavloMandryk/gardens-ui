@@ -5,7 +5,7 @@ import { ChainUnsupportedError } from 'use-wallet'
 import { SUPPORTED_CHAINS } from '@/networks'
 import { getNetworkName } from '@utils/web3-utils'
 import { useAppTheme } from '@providers/AppTheme'
-import connectionErrorLight from './assets/connection-error.png'
+import connectionErrorLight from '../../assets/connection-error.svg'
 import connectionErrorDark from './assets/connection-error-dark-mode.png'
 
 function AccountModuleErrorScreen({ error, onBack }) {

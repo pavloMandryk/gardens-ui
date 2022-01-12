@@ -1,14 +1,9 @@
 import { IndividualStepTypes } from '../stepper-statuses'
 import { useTheme } from '@1hive/1hive-ui'
 import blockIcon from '@assets/blockIcon.svg'
-import {
-  STEP_ERROR,
-  STEP_SUCCESS,
-  STEP_PROMPTING,
-  STEP_WORKING,
-} from '../stepper-statuses'
 // import TokenLoader from '../../TokenLoader'
 import { useAppTheme } from '@providers/AppTheme'
+import React from 'react'
 
 import signRequestFailIllustration from '@assets/signRequestFail.svg'
 import signRequestSuccessIllustration from '@assets/signRequestSuccess.svg'
@@ -24,9 +19,9 @@ const illustrations = {
   [IndividualStepTypes.Error]: signRequestFailIllustration,
 }
 const illustrationsDarkMode = {
-  [STEP_WORKING]: trxBeingMinedIllustrationDark,
-  [STEP_SUCCESS]: signRequestSuccessIllustrationDark,
-  [STEP_ERROR]: signRequestFailIllustrationDark,
+  [IndividualStepTypes.Working]: trxBeingMinedIllustrationDark,
+  [IndividualStepTypes.Success]: signRequestSuccessIllustrationDark,
+  [IndividualStepTypes.Error]: signRequestFailIllustrationDark,
 }
 
 function Illustration({ status, index }) {
@@ -39,7 +34,7 @@ function Illustration({ status, index }) {
 
   return (
     <>
-      {status === IndividualStepTypes.Prompting ? (
+      {status === IndividualStepTypes.Prompting} (
         <div
           css={`
             display: flex;
@@ -56,7 +51,7 @@ function Illustration({ status, index }) {
         </div>
       ) : (
         <img src={illustrationsType[status]} height={96} width={96} />
-      )}
+      )
     </>
   )
 }
