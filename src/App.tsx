@@ -10,15 +10,12 @@ import { Main } from '@1hive/1hive-ui'
 import MainView from '@components/MainView'
 import WelcomeLoader from '@components/Welcome/WelcomeLoader'
 import { HashRouter } from 'react-router-dom'
-import theme from './theme'
 
 function App() {
   const { appearance } = useAppTheme()
-  const mode = theme[appearance as keyof typeof theme]
-  console.log(mode)
   return (
     <HashRouter>
-      <Main assetsUrl="/aragon-ui/" layout={false} scrollView={false} theme={mode}>
+      <Main assetsUrl="/aragon-ui/" layout={false} scrollView={false} theme={appearance}>
         <WalletProvider>
           <GlobalErrorHandler>
             <ProfileProvider>
