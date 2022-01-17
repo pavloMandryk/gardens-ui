@@ -124,6 +124,7 @@ function GardenCard({ garden }) {
       <div
         css={`
           ${textStyle('title4')};
+          color: ${theme.content};
         `}
       >
         {garden.name || shortenAddress(garden.id)}

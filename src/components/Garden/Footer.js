@@ -118,6 +118,7 @@ function Footer() {
                   css={`
                     ${textStyle('body1')};
                     margin-bottom: ${1.5 * GU}px;
+                    color: ${theme.contentSecondary};
                   `}
                 >
                   Community
@@ -137,6 +138,7 @@ function Footer() {
                   css={`
                     ${textStyle('body1')};
                     margin-bottom: ${1.5 * GU}px;
+                    color: ${theme.contentSecondary};
                   `}
                 >
                   Documentation

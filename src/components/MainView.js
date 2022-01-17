@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useLocation } from 'react-router'
 import { GU, Root, ScrollView, ToastHub, useViewport } from '@1hive/1hive-ui'
+import { useTheme } from '@1hive/1hive-ui'
 
 import Footer from './Garden/Footer'
 import Header from './Header/Header'
@@ -22,6 +23,7 @@ function MainView({ children }) {
   const [createProposalModalVisible, setCreateProposalModalVisible] = useState(
     false
   )
+  const theme = useTheme()
 
   const handleToggleSidebar = useCallback(() => {
     setShowMobileSidebar(prevShowMobileSidebar => !prevShowMobileSidebar)
@@ -62,7 +64,12 @@ function MainView({ children }) {
       }
     `}
     >
-      <div css="display: flex">
+      <div
+        css={`
+          display: flex;
+          background-color: ${theme.background};
+        `}
+       >
         {hasSidebar ? (
           mobileMode ? (
             <MobileSidebar
