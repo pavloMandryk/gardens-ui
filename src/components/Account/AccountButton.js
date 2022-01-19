@@ -58,7 +58,8 @@ function AccountButton({ onClick }) {
           <div
             css={`
               margin-bottom: -5px;
-              ${textStyle('body2')}
+              ${textStyle('body2')};
+              color: ${theme.content};
             `}
           >
             <div

@@ -43,7 +43,7 @@ function GlobalPreferencesButton({ onOpen }) {
             border-radius: 0;
           `}
         >
-          <IconSettings color={theme.hint} />
+          <IconSettings color={theme.contentSecondary} />
         </ButtonIcon>
       </div>
       <Popover

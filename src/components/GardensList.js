@@ -147,7 +147,7 @@ function GardenCard({ garden }) {
           margin-bottom: ${1 * GU}px;
           ${textStyle('title4')};
           justify-content: center;
-          color: ${theme.content};
+          color: ${theme.contentSecondary};
         `}
       >
         <img

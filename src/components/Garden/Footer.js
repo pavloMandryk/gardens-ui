@@ -87,6 +87,7 @@ function Footer() {
         width: 100%;
         padding: ${5 * GU}px ${3 * GU}px;
         background: ${theme.surface};
+        border-top: ${theme._appearance === 'dark' && '1px solid #063374'}; 
       `}
     >
       <Layout paddingBottom={40}>
@@ -118,7 +119,7 @@ function Footer() {
                   css={`
                     ${textStyle('body1')};
                     margin-bottom: ${1.5 * GU}px;
-                    color: ${theme.contentSecondary};
+                    color: ${theme.content};
                   `}
                 >
                   Community
@@ -138,7 +139,7 @@ function Footer() {
                   css={`
                     ${textStyle('body1')};
                     margin-bottom: ${1.5 * GU}px;
-                    color: ${theme.contentSecondary};
+                    color: ${theme.content};
                   `}
                 >
                   Documentation

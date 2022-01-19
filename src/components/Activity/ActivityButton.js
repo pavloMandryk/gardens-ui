@@ -77,7 +77,7 @@ const ActivityButton = React.memo(function ActivityButton() {
               line-height: 0;
             `}
           >
-            <IconAlert color={theme.hint} />
+            <IconAlert color={theme.contentSecondary} />
             <Spring
               native
               from={{ opacity: 0, size: 0 }}

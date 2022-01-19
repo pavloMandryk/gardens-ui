@@ -98,11 +98,11 @@ function Item({ icon, index, label, onSelect, selected }) {
         ${!selected &&
           `
           background: ${theme.surface};
-          color: ${theme.contentSecondary};
+          color: ${theme.content};
           cursor: pointer;
           border: 1px solid ${theme.border};
           &:hover {
-            background: linear-gradient(268.53deg, rgba(170, 245, 212, 0.2) 0%, rgba(124, 224, 214, 0.2) 100%);
+            background: #052E68;
           }
         `}
       `}

@@ -6,6 +6,7 @@ import {
   Help,
   Split,
   textStyle,
+  theme,
   useLayout,
   useTheme,
 } from '@1hive/1hive-ui'
@@ -370,6 +371,7 @@ function DotSwitch({ first, onChange }) {
 }
 
 function Dot({ isActive, onChange }) {
+  const theme = useTheme()
   return (
     <span
       onClick={
@@ -384,8 +386,8 @@ function Dot({ isActive, onChange }) {
         height: 10px;
         width: 10px;
         margin: 5px;
-        border: 1px solid #c8c8c9;
-        background-color: ${isActive ? '#C8C8C9' : '#ffffff'};
+        border: 1.38px solid ${theme._appearance === 'light' ? '#c8c8c9' : '#385C90'};
+        background-color: ${isActive ? (theme._appearance === 'light' ? '#C8C8C9' : '#385C90') : 'transparent'};
         border-radius: 50%;
         display: inline-block;
         cursor: ${!isActive && 'pointer'};
